@@ -1,3 +1,6 @@
+// Copyright (c) HashiCorp, Inc.
+// SPDX-License-Identifier: MPL-2.0
+
 package terraform
 
 import (
@@ -4159,8 +4162,8 @@ import {
 		if got, want := instPlan.ActionReason, plans.ResourceInstanceChangeNoReason; got != want {
 			t.Errorf("wrong action reason\ngot:  %s\nwant: %s", got, want)
 		}
-		if !instPlan.Importing {
-			t.Errorf("expected import change, got non-import change")
+		if instPlan.Importing.ID != "123" {
+			t.Errorf("expected import change from \"123\", got non-import change")
 		}
 	})
 }
@@ -4225,8 +4228,8 @@ import {
 		if got, want := instPlan.ActionReason, plans.ResourceInstanceChangeNoReason; got != want {
 			t.Errorf("wrong action reason\ngot:  %s\nwant: %s", got, want)
 		}
-		if !instPlan.Importing {
-			t.Errorf("expected import change, got non-import change")
+		if instPlan.Importing.ID != "123" {
+			t.Errorf("expected import change from \"123\", got non-import change")
 		}
 	})
 }
@@ -4293,8 +4296,8 @@ import {
 		if got, want := instPlan.Action, plans.DeleteThenCreate; got != want {
 			t.Errorf("wrong planned action\ngot:  %s\nwant: %s", got, want)
 		}
-		if !instPlan.Importing {
-			t.Errorf("expected import change, got non-import change")
+		if instPlan.Importing.ID != "123" {
+			t.Errorf("expected import change from \"123\", got non-import change")
 		}
 	})
 }

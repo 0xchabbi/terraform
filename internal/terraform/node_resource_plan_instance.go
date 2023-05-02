@@ -1,3 +1,6 @@
+// Copyright (c) HashiCorp, Inc.
+// SPDX-License-Identifier: MPL-2.0
+
 package terraform
 
 import (
@@ -241,7 +244,7 @@ func (n *NodePlannableResourceInstance) managedResourceExecute(ctx EvalContext) 
 		}
 
 		if n.importTarget.ID != "" {
-			change.Importing = true
+			change.Importing = &plans.Importing{ID: n.importTarget.ID}
 		}
 
 		// FIXME: here we udpate the change to reflect the reason for
